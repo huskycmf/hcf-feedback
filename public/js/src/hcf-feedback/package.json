@@ -1,0 +1,25 @@
+{
+    "name": "hcb-client",
+    "author": "Mylotskyi Oleksii",
+    "version": "0.0.1",
+    "description": "Clients management module for HuskyCMS Backend",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "maintainers": [
+        {
+            "name": "Mylotskyi Oleksii",
+            "email": "oleksii.mylotskyi@milsdev.com"
+        }
+    ],
+    "directories": {
+        "lib": "."
+    },
+
+    "main": "./backend",
+    "icon": "http://huskycms.com/images/icon.jpg",
+    "dojoBuild": "package.js"
+}

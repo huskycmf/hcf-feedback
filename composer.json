@@ -1,0 +1,44 @@
+{
+    "name": "huskycms/hcf-feedback",
+    "type": "huskycms-frontend-plugin",
+    "description": "Added feedback functionality plugin for backend area of the HuskyCMS",
+    "authors": [
+        {
+            "name": "Mylotskyi Oleksii",
+            "email": "spalaxinco@gmail.com"
+        }
+    ],
+    "keywords": [
+        "huskycms", "plugin", "module"
+    ],
+    "license": "MIT",
+    "homepage": "http://huskycms.com/hcf-feedback",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.milsdev.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "huskycms/hc-core": "dev-master",
+        "spalax/zf2-libs": "dev-master",
+        "zendframework/zendframework": "2.2.0",
+        "doctrine/doctrine-module": "0.*",
+        "doctrine/doctrine-orm-module": "0.*",
+        "doctrine/migrations": "v1.0-ALPHA1"
+    },
+    "autoload": {
+        "psr-0": {
+            "HcfFeedback": "src/"
+        },
+
+        "classmap": [
+            "./Module.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}
