@@ -12,6 +12,7 @@ before_script:
 
 script:
   - mkdir -p build/logs
+  - pecl install xdebug
   - phpunit -v --configuration `pwd`/test/phpunit.xml
 
 after_script:
