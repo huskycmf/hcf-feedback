@@ -10,7 +10,7 @@ before_script:
   - composer install
   - composer update
 
-script: phpunit -v --configuration test/phpunit.xml
+script: phpunit -v --configuration `pwd`/test/phpunit.xml
 
 matrix:
   allow_failures:
