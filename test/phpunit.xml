@@ -7,8 +7,12 @@
          stopOnFailure="false"
          processIsolation="false"
          backupGlobals="false"
-         syntaxCheck="true"
->
+         syntaxCheck="true">
+
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
+
     <testsuite name="HcfFeedback Test Suite">
         <directory>./HcfFeedbackTest</directory>
     </testsuite>

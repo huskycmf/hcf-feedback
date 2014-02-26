@@ -12,6 +12,9 @@ before_script:
 
 script: phpunit -v --configuration `pwd`/test/phpunit.xml
 
+after_script:
+  - php vendor/bin/coveralls -v
+
 matrix:
   allow_failures:
     - php: hhvm
