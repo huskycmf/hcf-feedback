@@ -13,7 +13,7 @@ return array(
                     'options' => array(
                         'verb' => 'post',
                         'defaults' => array(
-                            'controller' => 'HcfFeedback-Controller-Save'
+                            'controller' => 'HcfFeedback-Controller-Create'
                         )
                     )
                 )
