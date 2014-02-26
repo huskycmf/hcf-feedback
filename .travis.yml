@@ -4,6 +4,7 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - 5.6
   - hhvm
 
 before_script:
@@ -12,13 +13,22 @@ before_script:
 
 script:
   - mkdir -p build/logs
-  - pecl install xdebug
   - phpunit -v --configuration `pwd`/test/phpunit.xml
 
 after_script:
-  - ls -lR build
   - php vendor/bin/coveralls -v
+
+matrix:
+  allow_failures:
+    - php: hhvm
+    - php: 5.6
+
 
 notifications:
   email:
+    recipients:
     - oleksii.mylotskyi@milsdev.com
+    on_success: never
+    on_failure: always
+
+fast_finish: true
