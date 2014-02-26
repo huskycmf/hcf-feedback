@@ -1,13 +1,13 @@
 <?php
 return array(
-    'HcfFeedback-Controller-Save' =>
+    'HcfFeedback-Controller-Create' =>
         'HcCore\Controller\Common\Rest\Collection\DataController',
 
-    'HcfFeedback-Service-Save' =>
-        'HcfFeedback\Service\SaveService',
+    'HcfFeedback-Service-Create' =>
+        'HcfFeedback\Service\CreateCommand',
 
-    'HcfFeedback-Data-Save' =>
-        'HcfFeedback\Data\Save',
+    'HcfFeedback-Data-Create' =>
+        'HcfFeedback\Data\Create',
 
     'HcfFeedback-Service-Aggregate-Persister' =>
         'HcfFeedback\Service\Persister\AggregatePersister',

@@ -1,6 +1,6 @@
 <?php
 return array(
     //==========================Controllers=====================//
-    'HcfFeedback-Controller-Save'
+    'HcfFeedback-Controller-Create'
     //-----------------------------------------------------------------//
 );
