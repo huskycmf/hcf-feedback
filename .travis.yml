@@ -7,17 +7,16 @@ php:
   - hhvm
 
 before_script:
-  - composer install
-  - composer update
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --dev --no-interaction
 
-script: phpunit -v --configuration `pwd`/test/phpunit.xml
+script:
+  - mkdir -p build/logs
+  - phpunit -v --configuration `pwd`/test/phpunit.xml
 
 after_script:
+  - ls -lR build
   - php vendor/bin/coveralls -v
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 notifications:
   email:
