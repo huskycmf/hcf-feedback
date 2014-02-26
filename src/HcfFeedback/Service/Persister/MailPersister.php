@@ -1,9 +1,9 @@
 <?php
 namespace HcfFeedback\Service\Persister;
 
-use HcCore\Service\Mail\Messages\FactoryInterface;
 use HcCore\Service\MailService;
 use HcfFeedback\Data\CreateInterface;
+use HcfFeedback\Service\Mail\Message\FactoryInterface;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response as PersisterResponse;
 
 class MailPersister implements PersisterInterface

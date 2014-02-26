@@ -27,21 +27,20 @@ class Create extends AbstractInputFilter
               ->attach($di->get('Zend\Validator\EmailAddress'));
         $this->add($input);
 
-        $input = $di->get('Zend\InputFilter\Input', array('name'=>'phone'));
-        $input->setRequired($options->getPhoneFieldRequired());
-        $input->getValidatorChain()
-              ->attach($di->get('Zend\Validator\StringLength', array('max'=>30)));
-
-        $input->getFilterChain()
-            ->attach($di->get('Zend\Filter\StripTags'))
-            ->attach($di->get('Zend\Filter\StringTrim'));
-        $this->add($input);
-
         $input = $di->get('Zend\InputFilter\Input', array('name'=>'message'));
-        $input->setRequired($options->getTextFieldRequired());
+        $input->setRequired($options->getMessageFieldRequired());
         $input->getFilterChain()->attach($di->get('Zend\Filter\StripTags'));
         $input->getValidatorChain()
               ->attach($di->get('Zend\Validator\StringLength', array('max'=>10000)));
+        $this->add($input);
+
+        $input = $di->get('Zend\InputFilter\Input', array('name'=>'phone'));
+        $input->setRequired($options->getPhoneFieldRequired());
+        $input->getValidatorChain()
+            ->attach($di->get('Zend\Validator\StringLength', array('max'=>30)));
+        $input->getFilterChain()
+            ->attach($di->get('Zend\Filter\StripTags'))
+            ->attach($di->get('Zend\Filter\StringTrim'));
         $this->add($input);
     }
 
@@ -74,6 +73,6 @@ class Create extends AbstractInputFilter
      */
     public function getMessage()
     {
-        return $this->getValue('text');
+        return $this->getValue('message');
     }
 }

@@ -44,6 +44,9 @@ class DatabasePersister implements PersisterInterface
             $feedbackEntity->setMessage($createData->getMessage());
             $feedbackEntity->setName($createData->getName());
 
+            $this->entityManager->persist($feedbackEntity);
+
+            $this->entityManager->flush();
             $this->entityManager->commit();
         } catch (\Exception $e) {
             $this->entityManager->rollback();

@@ -39,7 +39,7 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var bool
      */
-    protected $textFieldRequired = false;
+    protected $messageFieldRequired = false;
 
     /**
      * @param string $emailTo
@@ -138,18 +138,18 @@ class ModuleOptions extends AbstractOptions
     }
 
     /**
-     * @param boolean $textFieldRequired
+     * @param boolean $messageFieldRequired
      */
-    public function setTextFieldRequired($textFieldRequired)
+    public function setMessageFieldRequired($messageFieldRequired)
     {
-        $this->textFieldRequired = $textFieldRequired;
+        $this->messageFieldRequired = $messageFieldRequired;
     }
 
     /**
      * @return boolean
      */
-    public function getTextFieldRequired()
+    public function getMessageFieldRequired()
     {
-        return $this->textFieldRequired;
+        return $this->messageFieldRequired;
     }
 }

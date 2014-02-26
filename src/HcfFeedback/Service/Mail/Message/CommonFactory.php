@@ -3,6 +3,7 @@ namespace HcfFeedback\Service\Mail\Message;
 
 use HcfFeedback\Data\CreateInterface;
 use HcfFeedback\Options\ModuleOptions;
+use Zend\Di\Di;
 use Zend\Mail\Message as MailMessage;
 use HcfFeedback\Exception\RuntimeException;
 use Zend\Mime\Message as MimeMessage;
@@ -16,11 +17,19 @@ class CommonFactory implements FactoryInterface
     protected $options;
 
     /**
-     * @param ModuleOptions $options
+     * @var Di
      */
-    public function __construct(ModuleOptions $options)
+    protected $di;
+
+    /**
+     * @param ModuleOptions $options
+     * @param Di $di
+     */
+    public function __construct(ModuleOptions $options,
+                                Di $di)
     {
         $this->options = $options;
+        $this->di = $di;
     }
 
     /**
@@ -28,13 +37,13 @@ class CommonFactory implements FactoryInterface
      */
     public function getMessage(CreateInterface $createData)
     {
-        $message = new MailMessage();
-
-        if (!strlen($this->options->getEmailTo())) {
+        $emailTo = $this->options->getEmailTo();
+        if (!strlen($emailTo)) {
             throw new RuntimeException("Email address [to] must be defined in configuration");
         }
 
-        $message->setTo($this->options->getEmailTo());
+        $message = $this->di->get('Zend\Mail\Message');
+        $message->setTo($emailTo);
         $message->setFrom($this->options->getEmailFrom());
         $message->setSubject($this->options->getEmailSubject());
 
@@ -45,9 +54,10 @@ class CommonFactory implements FactoryInterface
         $body.= sprintf("<div>Message: <br/><pre>".
                             $createData->getMessage()."</pre></div>");
 
-        $bodyPart = new MimeMessage();
+        $bodyPart = $this->di->get('Zend\Mime\Message');
 
-        $bodyMessage = new MimePart($body);
+        $bodyMessage = $this->di->get('Zend\Mime\Part',
+                                      array('content'=>$body));
         $bodyMessage->type = 'text/html';
 
         $bodyPart->setParts(array($bodyMessage));

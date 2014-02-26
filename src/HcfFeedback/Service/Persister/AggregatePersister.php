@@ -2,6 +2,7 @@
 namespace HcfFeedback\Service\Persister;
 
 use HcfFeedback\Data\CreateInterface;
+use HcfFeedback\Exception\RuntimeException;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response as PersisterResponse;
 
 class AggregatePersister implements PersisterInterface
@@ -40,6 +41,10 @@ class AggregatePersister implements PersisterInterface
      */
     public function persist(CreateInterface $createData)
     {
+        if (!count($this->persisters)) {
+            throw new RuntimeException('Empty persisters array, could not persist message');
+        }
+
         foreach ($this->persisters as $persister) {
             $response = $persister->persist($createData);
             if ($response->isFailed()) {
