@@ -8,12 +8,38 @@ use HcfFeedback\Options\ModuleOptions;
 
 class CreteTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $requestParams;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $request;
+
+    /**
+     * Prepare the objects to be tested.
+     */
+    protected function setUp()
+    {
+        $this->request = $this->getMock('\Zend\Http\PhpEnvironment\Request');
+        $this->requestParams = $this->getMock('\Zend\Stdlib\Parameters');
+
+        $this->request->expects($this->any())
+             ->method('getPost')
+             ->will($this->returnValue($this->requestParams));
+    }
+
     public function testEmptySuccess()
     {
         $di = new Di();
         $moduleOptions = new ModuleOptions();
-        $createData = new Create($di, $moduleOptions);
-        $createData->setData(array());
+
+        $this->requestParams->expects($this->any())
+             ->method('toArray')->will($this->returnValue(array()));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
         $this->assertTrue($createData->isValid());
     }
 
@@ -21,8 +47,11 @@ class CreteTest extends \PHPUnit_Framework_TestCase
     {
         $di = new Di();
         $moduleOptions = new ModuleOptions();
-        $createData = new Create($di, $moduleOptions);
-        $createData->setData(array('name'=>'test', 'email'=>'test'));
+
+        $this->requestParams->expects($this->any())->method('toArray')
+             ->will($this->returnValue(array('name'=>'test', 'email'=>'test')));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
 
         $this->assertFalse($createData->isValid());
         $this->assertArrayHasKey('email', $createData->getInvalidInput());
@@ -32,10 +61,13 @@ class CreteTest extends \PHPUnit_Framework_TestCase
     {
         $di = new Di();
         $moduleOptions = new ModuleOptions();
-        $createData = new Create($di, $moduleOptions);
-        $createData->setData(array('name'=>'test test test',
-                                   'email'=>'test@gmail.com',
-                                   'message'=>str_repeat('ba', 5000)));
+
+        $this->requestParams->expects($this->any())->method('toArray')
+             ->will($this->returnValue(array('name'=>'test test test',
+                                             'email'=>'test@gmail.com',
+                                             'message'=>str_repeat('ba', 5000))));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
 
         $this->assertTrue($createData->isValid());
     }
@@ -44,7 +76,11 @@ class CreteTest extends \PHPUnit_Framework_TestCase
     {
         $di = new Di();
         $moduleOptions = new ModuleOptions();
-        $createData = new Create($di, $moduleOptions);
+
+        $this->requestParams->expects($this->any())
+             ->method('toArray')->will($this->returnValue(array()));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
         foreach ($createData->getInputs() as $input) {
             $this->assertFalse($input->isRequired());
         }
@@ -76,7 +112,10 @@ class CreteTest extends \PHPUnit_Framework_TestCase
         $method = 'set'.ucfirst($key).'FieldRequired';
         $moduleOptions->$method(true);
 
-        $createData = new Create($di, $moduleOptions);
+        $this->requestParams->expects($this->any())
+             ->method('toArray')->will($this->returnValue(array()));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
         $inputs = $createData->getInputs();
         $this->assertTrue($inputs[$key]->isRequired());
     }
@@ -89,8 +128,10 @@ class CreteTest extends \PHPUnit_Framework_TestCase
         $di = new Di();
         $moduleOptions = new ModuleOptions();
 
-        $createData = new Create($di, $moduleOptions);
-        $createData->setData(array($key=>$value));
+        $this->requestParams->expects($this->any())
+             ->method('toArray')->will($this->returnValue(array($key=>$value)));
+
+        $createData = new Create($this->request, $di, $moduleOptions);
 
         $this->assertEquals($value, $createData->{"get".ucfirst($key)}());
     }

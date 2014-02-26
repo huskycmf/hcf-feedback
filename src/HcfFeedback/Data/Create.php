@@ -2,6 +2,7 @@
 namespace HcfFeedback\Data;
 
 use HcfFeedback\Options\ModuleOptions;
+use Zend\Http\PhpEnvironment\Request;
 use Zf2Libs\Data\AbstractInputFilter;
 use HcCore\Data\DataMessagesInterface;
 use Zend\Di\Di;
@@ -10,9 +11,12 @@ class Create extends AbstractInputFilter
     implements CreateInterface, DataMessagesInterface
 {
     /**
+     * @param Request $request
      * @param Di $di
+     * @param ModuleOptions $options
      */
-    public function __construct(Di $di,
+    public function __construct(Request $request,
+                                Di $di,
                                 ModuleOptions $options)
     {
         $input = $di->get('Zend\InputFilter\Input', array('name'=>'name'));
@@ -42,6 +46,8 @@ class Create extends AbstractInputFilter
             ->attach($di->get('Zend\Filter\StripTags'))
             ->attach($di->get('Zend\Filter\StringTrim'));
         $this->add($input);
+
+        $this->setData($request->getPost()->toArray());
     }
 
     /**
