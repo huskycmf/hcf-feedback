@@ -1,8 +1,8 @@
 {
-    "name": "hcb-client",
+    "name": "hcf-feedback",
     "author": "Mylotskyi Oleksii",
     "version": "0.0.1",
-    "description": "Clients management module for HuskyCMS Backend",
+    "description": "Feedback functionality plugin for frontend area of the HuskyCMS",
     "licenses": [
         {
             "type": "MIT",
@@ -18,8 +18,5 @@
     "directories": {
         "lib": "."
     },
-
-    "main": "./backend",
-    "icon": "http://huskycms.com/images/icon.jpg",
     "dojoBuild": "package.js"
 }

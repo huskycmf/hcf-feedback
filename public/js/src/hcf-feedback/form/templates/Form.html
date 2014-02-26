@@ -1,0 +1,39 @@
+<form data-dojo-attach-point='containerNode'
+      data-dojo-attach-event='onreset:_onReset, onsubmit:_onSubmit'
+      ${!nameAttrSetting}>
+    <div class="form-group">
+        <label for="${id}_name">${nameFieldText}</label>
+        <input class="form-control"
+               data-dojo-type="dijit/form/ValidationTextBox"
+               data-dojo-props="id: '${id}_name'"
+               data-dojo-attach-point="nameWidget" />
+    </div>
+    <div class="form-group">
+        <label for="${id}_email">${emailFieldText}</label>
+        <input class="form-control"
+               data-dojo-type="dijit/form/ValidationTextBox"
+               data-dojo-props="id: '${id}_email'"
+               data-dojo-attach-point="emailWidget" />
+    </div>
+    <div class="form-group">
+        <label for="${id}_phone">${phoneFieldText}</label>
+        <input class="form-control"
+               data-dojo-type="dijit/form/ValidationTextBox"
+               data-dojo-props="id: '${id}_phone'"
+               data-dojo-attach-point="phoneWidget" />
+    </div>
+
+    <div class="form-group">
+        <label for="${id}_message">${messageFieldText}</label>
+        <textarea class="form-control"
+                  data-dojo-type="dijit/form/Textarea"
+                  data-dojo-props="id: '${id}_message'"
+                  data-dojo-attach-point="textWidget"></textarea>
+    </div>
+
+    <div class="btn btn-default"
+            data-dojo-type="dojo-common/form/BusyButton"
+            data-dojo-attach-point="buttonWidget"
+            data-dojo-attach-event="click: submit"
+            data-dojo-props="label: '${buttonText}'">${buttonText}</div>
+</form>
