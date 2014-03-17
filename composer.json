@@ -26,8 +26,9 @@
     "require": {
         "php": ">=5.3.3",
         "huskycms/hc-core": "dev-master",
+        "huskycms/hc-frontend": "dev-master",
         "spalax/zf2-libs": "dev-master",
-        "zendframework/zendframework": "2.2.0",
+        "zendframework/zendframework": ">=2.3",
         "doctrine/doctrine-module": "0.*",
         "doctrine/doctrine-orm-module": "0.*",
         "doctrine/migrations": "v1.0-ALPHA1"
