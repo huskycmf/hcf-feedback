@@ -1,7 +1,7 @@
 {
     "name": "huskycms/hcf-feedback",
     "type": "huskycms-frontend-plugin",
-    "description": "Added feedback functionality plugin for backend area of the HuskyCMS",
+    "description": "Added feedback functionality plugin for backend area of the HuskyCMS.",
     "authors": [
         {
             "name": "Mylotskyi Oleksii",
