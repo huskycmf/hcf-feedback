@@ -15,9 +15,16 @@ return array(
         )
     ),
 
-    'HcfFeedback-Service-Aggregate-Persister' => array(
-        'injections' => array(
-            'HcfFeedback-Service-Persister-Mail'
+    'HcfFeedback-Service-Create' => array(
+        'parameters' => array(
+            'createData' => 'HcfFeedback-Data-Create',
+            'persister' => 'HcfFeedback-Service-Persister-Mail'
         )
     )
+
+//    'HcfFeedback-Service-Aggregate-Persister' => array(
+//        'injections' => array(
+//            'HcfFeedback-Service-Persister-Mail'
+//        )
+//    )
 );

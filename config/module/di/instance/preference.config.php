@@ -6,9 +6,6 @@ return array(
     'Zend\ServiceManager\ServiceLocatorInterface' =>
         'ServiceManager',
 
-    'HcfFeedback\Service\Persister\PersisterInterface' =>
-        'HcfFeedback-Service-Aggregate-Persister',
-
     'HcfFeedback\Data\CreateInterface' =>
         'HcfFeedback-Data-Create',
 
