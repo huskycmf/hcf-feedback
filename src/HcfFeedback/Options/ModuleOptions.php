@@ -14,12 +14,12 @@ class ModuleOptions extends AbstractOptions
     /**
      * @var array
      */
-    protected $emailCc= array();
+    protected $emailCc = array();
 
     /**
      * @var array
      */
-    protected $emailBcc= array();
+    protected $emailBcc = array();
 
     /**
      * @var string
@@ -72,6 +72,9 @@ class ModuleOptions extends AbstractOptions
      */
     public function setEmailCc($emailCc)
     {
+        if (!is_array($emailCc)) {
+            throw new \InvalidArgumentException('Invalid argument type, array expected '.var_export($emailCc, true));
+        }
         $this->emailCc = $emailCc;
     }
 
@@ -88,6 +91,9 @@ class ModuleOptions extends AbstractOptions
      */
     public function setEmailBcc($emailBcc)
     {
+        if (!is_array($emailBcc)) {
+            throw new \InvalidArgumentException('Invalid argument type, array expected '.var_export($emailBcc, true));
+        }
         $this->emailBcc = $emailBcc;
     }
 
