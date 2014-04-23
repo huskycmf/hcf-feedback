@@ -33,8 +33,17 @@ class CommonFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('getEmailSubject')
             ->will($this->returnValue('test subject value'));
 
+
+        $this->moduleOptions->expects($this->once())
+             ->method('getEmailCc')
+             ->will($this->returnValue(array()));
+
+        $this->moduleOptions->expects($this->once())
+             ->method('getEmailBcc')
+             ->will($this->returnValue(array()));
+
         $this->createData = $this->getMock('\HcfFeedback\Data\CreateInterface',
-            array(), array(), '', false);
+                                            array(), array(), '', false);
 
         $this->createData->expects($this->once())->method('getName');
         $this->createData->expects($this->once())->method('getEmail');
