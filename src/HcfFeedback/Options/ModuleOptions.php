@@ -12,6 +12,16 @@ class ModuleOptions extends AbstractOptions
     protected $emailTo = '';
 
     /**
+     * @var array
+     */
+    protected $emailCc= array();
+
+    /**
+     * @var array
+     */
+    protected $emailBcc= array();
+
+    /**
      * @var string
      */
     protected $emailFrom = 'noreplay@localhost.localdomain';
@@ -55,6 +65,38 @@ class ModuleOptions extends AbstractOptions
     public function getEmailTo()
     {
         return $this->emailTo;
+    }
+
+    /**
+     * @param array $emailCc
+     */
+    public function setEmailCc($emailCc)
+    {
+        $this->emailCc = $emailCc;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEmailCc()
+    {
+        return $this->emailCc;
+    }
+
+    /**
+     * @param array $emailBcc
+     */
+    public function setEmailBcc($emailBcc)
+    {
+        $this->emailBcc = $emailBcc;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEmailBcc()
+    {
+        return $this->emailBcc;
     }
 
     /**

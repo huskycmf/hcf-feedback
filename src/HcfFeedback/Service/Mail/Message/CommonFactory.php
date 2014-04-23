@@ -42,8 +42,14 @@ class CommonFactory implements FactoryInterface
             throw new RuntimeException("Email address [to] must be defined in configuration");
         }
 
+        /* @var $message \Zend\Mail\Message */
         $message = $this->di->get('Zend\Mail\Message');
+
         $message->setTo($emailTo);
+
+        $message->addCc($this->options->getEmailCc());
+        $message->addBcc($this->options->getEmailBcc());
+
         $message->setFrom($this->options->getEmailFrom());
         $message->setSubject($this->options->getEmailSubject());
 
